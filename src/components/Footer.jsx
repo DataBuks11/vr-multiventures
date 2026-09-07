@@ -1,5 +1,5 @@
 import React from 'react';
-import logoImg from '../assets/logo.png';
+import vrSymbol from '../assets/vr-symbol.png';
 import { ArrowUp } from 'lucide-react';
 
 export default function Footer() {
@@ -32,17 +32,29 @@ export default function Footer() {
         >
           {/* Logo & Tagline */}
           <div style={{ maxWidth: '420px' }}>
-            <img
-              src={logoImg}
-              alt="VR Multiventures."
-              style={{
-                height: '38px',
-                width: 'auto',
-                display: 'block',
-                marginBottom: '1.25rem',
-                objectFit: 'contain',
-              }}
-            />
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', marginBottom: '1.25rem' }}>
+              <img
+                src={vrSymbol}
+                alt="VR"
+                style={{
+                  height: '32px',
+                  width: 'auto',
+                  display: 'block',
+                  objectFit: 'contain',
+                }}
+              />
+              <span
+                style={{
+                  fontSize: '1.25rem',
+                  fontWeight: 600,
+                  letterSpacing: '-0.015em',
+                  color: '#ffffff',
+                  fontFamily: 'var(--font-heading)',
+                }}
+              >
+                VR Multiventures<span style={{ color: 'var(--accent-orange)' }}>.</span>
+              </span>
+            </div>
             <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
               Moving infrastructure. Connecting possibilities. Specializing in reliable logistics and the transportation of critical telecom tower equipment.
             </p>

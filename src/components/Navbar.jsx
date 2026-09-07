@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import logoImg from '../assets/logo.png';
+import vrSymbol from '../assets/vr-symbol.png';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 
 export default function Navbar() {
@@ -53,7 +53,7 @@ export default function Navbar() {
           justifyContent: 'space-between',
         }}
       >
-        {/* Approved Logo */}
+        {/* Iconic VR Symbol Alone */}
         <a
           href="#"
           style={{
@@ -64,14 +64,17 @@ export default function Navbar() {
           aria-label="VR Multiventures Home"
         >
           <img
-            src={logoImg}
-            alt="VR Multiventures."
+            src={vrSymbol}
+            alt="VR"
             style={{
-              height: '34px',
+              height: '32px',
               width: 'auto',
               display: 'block',
               objectFit: 'contain',
+              transition: 'transform 0.2s ease',
             }}
+            onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.05)')}
+            onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
           />
         </a>
 
