@@ -10,12 +10,16 @@ export default function Footer() {
 
   return (
     <footer
+      className="liquid-glass"
       style={{
-        backgroundColor: '#000000',
-        borderTop: '1px solid var(--border-hairline)',
+        backgroundColor: 'rgba(8, 8, 12, 0.65)',
+        backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
+        borderTop: '1px solid var(--border-glass)',
         paddingTop: '5rem',
         paddingBottom: '3rem',
         position: 'relative',
+        zIndex: 2,
       }}
     >
       <div className="container">

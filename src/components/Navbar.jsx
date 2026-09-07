@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import vrSymbol from '../assets/vr-symbol.png';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { Menu, X, ArrowUpRight, Home } from 'lucide-react';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,7 +20,13 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close mobile drawer whenever route changes
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
+
   const navLinks = [
+    { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
     { name: 'Services', path: '/services' },
     { name: 'Sectors', path: '/sectors' },
@@ -39,8 +46,8 @@ export default function Navbar() {
         height: 'var(--header-height)',
         display: 'flex',
         alignItems: 'center',
-        borderBottom: scrolled ? '1px solid var(--border-hairline)' : '1px solid transparent',
-        backgroundColor: scrolled ? 'rgba(0, 0, 0, 0.92)' : 'rgba(0, 0, 0, 0.5)',
+        borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+        backgroundColor: scrolled ? 'rgba(6, 6, 8, 0.82)' : 'rgba(10, 10, 14, 0.55)',
         backdropFilter: 'blur(16px)',
         WebkitBackdropFilter: 'blur(16px)',
         transition: 'all 0.3s ease',
@@ -54,19 +61,20 @@ export default function Navbar() {
           justifyContent: 'space-between',
         }}
       >
-        {/* Approved Iconic VR Symbol Alone */}
+        {/* Iconic VR Symbol Alone (Clickable to Home) */}
         <Link
           to="/"
           style={{
             display: 'flex',
             alignItems: 'center',
+            gap: '0.75rem',
             height: '42px',
           }}
           aria-label="VR Multiventures Home"
         >
           <img
             src={vrSymbol}
-            alt="VR Multiventures"
+            alt="VR"
             style={{
               height: '32px',
               width: 'auto',
@@ -74,17 +82,17 @@ export default function Navbar() {
               objectFit: 'contain',
               transition: 'transform 0.2s ease',
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.05)')}
+            onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.06)')}
             onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
           />
         </Link>
 
-        {/* Desktop Editorial Navigation */}
+        {/* Desktop Editorial Navigation including HOME */}
         <nav
           style={{
             display: 'none',
             alignItems: 'center',
-            gap: '2.5rem',
+            gap: '2.25rem',
           }}
           className="desktop-nav"
         >
@@ -92,6 +100,7 @@ export default function Navbar() {
             <NavLink
               key={link.name}
               to={link.path}
+              end={link.path === '/'}
               style={({ isActive }) => ({
                 fontSize: '0.8125rem',
                 fontWeight: 500,
@@ -105,7 +114,6 @@ export default function Navbar() {
               })}
               onMouseEnter={(e) => (e.target.style.color = '#ffffff')}
               onMouseLeave={(e) => {
-                // Keep active color if currently on page
                 if (!e.target.classList.contains('active')) {
                   e.target.style.color = 'var(--text-secondary)';
                 }
@@ -159,19 +167,21 @@ export default function Navbar() {
               textTransform: 'uppercase',
               color: '#ffffff',
               padding: '0.55rem 1.15rem',
-              border: '1px solid var(--border-strong)',
-              backgroundColor: 'rgba(255, 255, 255, 0.04)',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              backgroundColor: 'rgba(255, 255, 255, 0.05)',
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.35rem',
               transition: 'all 0.2s ease',
+              borderRadius: '2px',
+              backdropFilter: 'blur(8px)',
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.borderColor = 'var(--accent-orange)';
               e.currentTarget.style.color = 'var(--accent-orange)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = 'var(--border-strong)';
+              e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
               e.currentTarget.style.color = '#ffffff';
             }}
           >
@@ -207,22 +217,23 @@ export default function Navbar() {
             right: 0,
             bottom: 0,
             height: 'calc(100vh - var(--header-height))',
-            backgroundColor: 'rgba(0, 0, 0, 0.97)',
+            backgroundColor: 'rgba(5, 5, 8, 0.94)',
             backdropFilter: 'blur(20px)',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
             padding: '2.5rem 1.5rem',
-            borderTop: '1px solid var(--border-hairline)',
+            borderTop: '1px solid rgba(255, 255, 255, 0.1)',
             zIndex: 99,
           }}
         >
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.75rem' }}>
-            <span className="editorial-label-muted">Corporate Navigation</span>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+            <span className="editorial-label-muted">Navigation Menu</span>
             {navLinks.map((link) => (
               <NavLink
                 key={link.name}
                 to={link.path}
+                end={link.path === '/'}
                 onClick={() => setMobileMenuOpen(false)}
                 style={({ isActive }) => ({
                   fontSize: '1.5rem',
@@ -241,9 +252,9 @@ export default function Navbar() {
             ))}
           </div>
 
-          <div style={{ borderTop: '1px solid var(--border-hairline)', paddingTop: '1.5rem' }}>
+          <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.1)', paddingTop: '1.5rem' }}>
             <p style={{ fontSize: '0.8125rem', color: 'var(--text-muted)', marginBottom: '0.35rem' }}>
-              VR Multiventures · Telecom Infrastructure Logistics
+              VR Multiventures · Infrastructure Transportation
             </p>
             <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
               Moving infrastructure. Connecting possibilities.

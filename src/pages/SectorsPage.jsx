@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ridgeInfrastructureImg from '../assets/ridge-infrastructure.jpg';
-import { Radio, Truck, Building, Cpu, Globe, ArrowRight } from 'lucide-react';
+import { Radio, Truck, Building, Cpu, Globe, ArrowRight, ChevronRight } from 'lucide-react';
 
 export default function SectorsPage() {
   const sectors = [
@@ -53,13 +53,19 @@ export default function SectorsPage() {
   ];
 
   return (
-    <div style={{ paddingTop: 'var(--header-height)', backgroundColor: '#000000', minHeight: '100vh' }}>
+    <div style={{ paddingTop: 'calc(var(--header-height) + 1.5rem)', minHeight: '100vh', position: 'relative', zIndex: 1 }}>
       
-      {/* 1. Page Header */}
-      <section className="editorial-section" style={{ paddingBottom: '3rem' }}>
+      {/* 1. Page Header with Breadcrumb */}
+      <section className="editorial-section" style={{ paddingBottom: '3rem', paddingTop: '2rem' }}>
         <div className="container">
+          <div className="editorial-breadcrumb">
+            <Link to="/">Home</Link>
+            <ChevronRight size={12} />
+            <span style={{ color: '#ffffff' }}>Operating Sectors</span>
+          </div>
+
           <div style={{ maxWidth: '880px' }}>
-            <span className="editorial-label" style={{ color: 'var(--accent-orange)', marginBottom: '1rem' }}>
+            <span className="editorial-label" style={{ marginBottom: '1rem' }}>
               OPERATING SECTORS & EXPANSION
             </span>
             <h1
@@ -82,20 +88,20 @@ export default function SectorsPage() {
         </div>
       </section>
 
-      {/* 2. Hero Visual Showcase */}
+      {/* 2. Visual Showcase */}
       <div className="container" style={{ marginBottom: '5rem' }}>
         <div
+          className="liquid-glass"
           style={{
             position: 'relative',
             borderRadius: '2px',
             overflow: 'hidden',
-            border: '1px solid var(--border-hairline)',
           }}
         >
           <img
             src={ridgeInfrastructureImg}
             alt="Mountain ridge telecom infrastructure connected by highway"
-            style={{ width: '100%', height: '500px', objectFit: 'cover', display: 'block' }}
+            style={{ width: '100%', height: '500px', objectFit: 'cover', display: 'block', opacity: 0.95 }}
           />
           <div
             style={{
@@ -103,7 +109,7 @@ export default function SectorsPage() {
               bottom: 0,
               left: 0,
               right: 0,
-              background: 'linear-gradient(to top, rgba(0,0,0,0.92) 0%, transparent 80%)',
+              background: 'linear-gradient(to top, rgba(6, 6, 10, 0.95) 0%, transparent 80%)',
               padding: '2.5rem 2rem 1.5rem',
               display: 'flex',
               justifyContent: 'space-between',
@@ -127,11 +133,11 @@ export default function SectorsPage() {
         </div>
       </div>
 
-      {/* 3. Detailed Sector Cards */}
-      <section className="editorial-section" style={{ backgroundColor: '#050505', borderTop: '1px solid var(--border-hairline)', borderBottom: '1px solid var(--border-hairline)' }}>
+      {/* 3. Detailed Sector Cards (Liquid Glass) */}
+      <section className="editorial-section">
         <div className="container">
           <div style={{ marginBottom: '3.5rem' }}>
-            <span className="editorial-label" style={{ color: 'var(--accent-orange)', marginBottom: '0.75rem' }}>
+            <span className="editorial-label" style={{ marginBottom: '0.75rem' }}>
               PORTFOLIO ARCHITECTURE
             </span>
             <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)', color: '#ffffff', fontWeight: 300 }}>
@@ -140,100 +146,124 @@ export default function SectorsPage() {
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2.5rem' }}>
-            {sectors.map((sector) => {
-              const Icon = sector.icon;
-              return (
-                <div
-                  key={sector.id}
-                  style={{
-                    backgroundColor: 'rgba(255, 255, 255, 0.02)',
-                    border: '1px solid var(--border-hairline)',
-                    padding: '2.5rem',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-between',
-                    transition: 'border-color 0.2s ease',
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'rgba(255, 85, 0, 0.45)')}
-                  onMouseLeave={(e) => (e.currentTarget.style.borderColor = 'var(--border-hairline)')}
-                >
-                  <div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
-                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: '1.25rem', color: 'var(--accent-orange)' }}>
-                        {sector.id}
-                      </span>
-                      <span
-                        style={{
-                          fontSize: '0.6875rem',
-                          fontFamily: 'var(--font-mono)',
-                          color: sector.statusColor,
-                          letterSpacing: '0.15em',
-                          textTransform: 'uppercase',
-                          border: `1px solid ${sector.statusColor}33`,
-                          padding: '0.2rem 0.5rem',
-                          borderRadius: '2px',
-                        }}
-                      >
-                        {sector.status}
-                      </span>
-                    </div>
+            {sectors.map((sector) => (
+              <div
+                key={sector.id}
+                className="liquid-glass-card"
+                style={{
+                  padding: '2.5rem',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  borderRadius: '2px',
+                }}
+              >
+                <div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '1.25rem', color: 'var(--accent-orange)' }}>
+                      {sector.id}
+                    </span>
+                    <span
+                      style={{
+                        fontSize: '0.6875rem',
+                        fontFamily: 'var(--font-mono)',
+                        color: sector.statusColor,
+                        letterSpacing: '0.15em',
+                        textTransform: 'uppercase',
+                        border: `1px solid ${sector.statusColor}44`,
+                        padding: '0.2rem 0.5rem',
+                        borderRadius: '2px',
+                        backgroundColor: 'rgba(0, 0, 0, 0.4)',
+                      }}
+                    >
+                      {sector.status}
+                    </span>
+                  </div>
 
-                    <h3 style={{ fontSize: '1.45rem', color: '#ffffff', fontWeight: 400, marginBottom: '1rem' }}>
-                      {sector.title}
-                    </h3>
-                    <p style={{ fontSize: '0.975rem', color: 'var(--text-secondary)', lineHeight: 1.65, marginBottom: '2rem' }}>
-                      {sector.summary}
-                    </p>
+                  <h3 style={{ fontSize: '1.45rem', color: '#ffffff', fontWeight: 400, marginBottom: '1rem' }}>
+                    {sector.title}
+                  </h3>
+                  <p style={{ fontSize: '0.975rem', color: 'var(--text-secondary)', lineHeight: 1.65, marginBottom: '2rem' }}>
+                    {sector.summary}
+                  </p>
 
-                    <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.06)', paddingTop: '1.25rem' }}>
-                      <span style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)', letterSpacing: '0.15em', textTransform: 'uppercase', display: 'block', marginBottom: '0.75rem' }}>
-                        KEY INITIATIVES
-                      </span>
-                      <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                        {sector.features.map((feat, fIdx) => (
-                          <li key={fIdx} style={{ fontSize: '0.875rem', color: '#cccccc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                            <span style={{ width: '4px', height: '4px', backgroundColor: 'var(--accent-orange)', display: 'inline-block' }} />
-                            {feat}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                  <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.08)', paddingTop: '1.25rem' }}>
+                    <span style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)', letterSpacing: '0.15em', textTransform: 'uppercase', display: 'block', marginBottom: '0.75rem' }}>
+                      KEY INITIATIVES
+                    </span>
+                    <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                      {sector.features.map((feat, fIdx) => (
+                        <li key={fIdx} style={{ fontSize: '0.875rem', color: '#d0d0d8', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                          <span style={{ width: '4px', height: '4px', backgroundColor: 'var(--accent-orange)', display: 'inline-block' }} />
+                          {feat}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* 4. Strategic Bottom Link */}
-      <section className="editorial-section" style={{ backgroundColor: '#000000' }}>
+      {/* 4. Bottom Return / Link Strip */}
+      <section className="editorial-section">
         <div className="container">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '2rem' }}>
+          <div
+            className="liquid-glass"
+            style={{
+              padding: '2.5rem 3rem',
+              borderRadius: '2px',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+              gap: '2rem',
+            }}
+          >
             <div>
-              <span className="editorial-label-muted">LOGISTICS INQUIRY</span>
+              <span className="editorial-label-muted">NAVIGATION</span>
               <h3 style={{ fontSize: '1.85rem', color: '#ffffff', fontWeight: 300, marginTop: '0.5rem' }}>
                 Need specialized infrastructure logistics?
               </h3>
             </div>
-            <Link
-              to="/contact"
-              style={{
-                backgroundColor: 'var(--accent-orange)',
-                color: '#ffffff',
-                padding: '0.9rem 2rem',
-                fontSize: '0.8125rem',
-                fontWeight: 600,
-                letterSpacing: '0.18em',
-                textTransform: 'uppercase',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.75rem',
-              }}
-            >
-              Inquire With Operations
-              <ArrowRight size={15} />
-            </Link>
+            <div style={{ display: 'flex', gap: '1.25rem', flexWrap: 'wrap' }}>
+              <Link
+                to="/"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  fontSize: '0.8125rem',
+                  letterSpacing: '0.15em',
+                  textTransform: 'uppercase',
+                  color: '#ffffff',
+                  padding: '0.85rem 1.5rem',
+                  border: '1px solid rgba(255, 255, 255, 0.25)',
+                }}
+              >
+                ← Return to Home
+              </Link>
+              <Link
+                to="/contact"
+                style={{
+                  backgroundColor: 'var(--accent-orange)',
+                  color: '#ffffff',
+                  padding: '0.85rem 1.75rem',
+                  fontSize: '0.8125rem',
+                  fontWeight: 600,
+                  letterSpacing: '0.18em',
+                  textTransform: 'uppercase',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.75rem',
+                }}
+              >
+                Inquire With Operations
+                <ArrowRight size={15} />
+              </Link>
+            </div>
           </div>
         </div>
       </section>

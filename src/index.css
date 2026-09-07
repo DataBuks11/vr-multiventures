@@ -1,25 +1,26 @@
 /* ==========================================================================
-   VR MULTIVENTURES — Swiss Editorial Logistics Design System
+   VR MULTIVENTURES — Swiss Editorial & Liquid Glass Design System
    ========================================================================== */
 
 :root {
   --bg-primary: #000000;
-  --bg-surface: #070707;
-  --bg-surface-elevated: #0f0f0f;
-  --bg-surface-subtle: rgba(255, 255, 255, 0.03);
+  --bg-glass-heavy: rgba(10, 10, 14, 0.55);
+  --bg-glass-medium: rgba(12, 12, 16, 0.38);
+  --bg-glass-light: rgba(255, 255, 255, 0.05);
   
   --text-primary: #ffffff;
-  --text-secondary: #9a9a9f;
-  --text-muted: #5a5a60;
-  --text-dim: #3a3a40;
+  --text-secondary: #c0c0c8;
+  --text-muted: #757582;
+  --text-dim: #454552;
   
   --accent-orange: #ff5500;
   --accent-orange-hover: #ff6e26;
-  --accent-orange-glow: rgba(255, 85, 0, 0.18);
+  --accent-orange-glow: rgba(255, 85, 0, 0.25);
   
-  --border-hairline: rgba(255, 255, 255, 0.1);
-  --border-strong: rgba(255, 255, 255, 0.2);
-  --border-accent: rgba(255, 85, 0, 0.5);
+  --border-hairline: rgba(255, 255, 255, 0.12);
+  --border-strong: rgba(255, 255, 255, 0.22);
+  --border-glass: rgba(255, 255, 255, 0.16);
+  --border-accent: rgba(255, 85, 0, 0.6);
   
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-heading: 'Plus Jakarta Sans', var(--font-sans);
@@ -57,7 +58,7 @@ body {
   position: relative;
 }
 
-/* Base Typography */
+/* Typography */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-weight: 400;
@@ -86,11 +87,11 @@ button {
   outline: none;
 }
 
-input, textarea {
+input, textarea, select {
   font-family: inherit;
 }
 
-/* Layout Utilities */
+/* Layout Container */
 .container {
   width: 100%;
   max-width: var(--container-max);
@@ -98,6 +99,8 @@ input, textarea {
   margin-right: auto;
   padding-left: 2rem;
   padding-right: 2rem;
+  position: relative;
+  z-index: 2;
 }
 
 @media (max-width: 768px) {
@@ -107,13 +110,45 @@ input, textarea {
   }
 }
 
+/* Liquid Glass Utilities */
+.liquid-glass {
+  background: var(--bg-glass-medium);
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  border: 1px solid var(--border-glass);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.liquid-glass-card {
+  background: rgba(14, 14, 18, 0.42);
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.liquid-glass-card:hover {
+  background: rgba(22, 22, 28, 0.58);
+  border-color: rgba(255, 85, 0, 0.55);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 24px rgba(255, 85, 0, 0.2);
+}
+
+.liquid-glass-panel {
+  background: rgba(10, 10, 14, 0.36);
+  backdrop-filter: blur(10px) saturate(140%);
+  -webkit-backdrop-filter: blur(10px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
 /* Editorial Labels & Tags */
 .editorial-label {
   font-size: 0.75rem;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.22em;
-  color: var(--text-secondary);
+  color: var(--accent-orange);
   display: inline-block;
 }
 
@@ -138,6 +173,7 @@ input, textarea {
   padding-top: 6.5rem;
   padding-bottom: 6.5rem;
   position: relative;
+  z-index: 1;
 }
 
 @media (max-width: 768px) {
@@ -145,6 +181,29 @@ input, textarea {
     padding-top: 4.5rem;
     padding-bottom: 4.5rem;
   }
+}
+
+/* Breadcrumb Styling */
+.editorial-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.8125rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  margin-bottom: 1.5rem;
+}
+
+.editorial-breadcrumb a {
+  color: var(--accent-orange);
+  transition: opacity 0.2s ease;
+}
+
+.editorial-breadcrumb a:hover {
+  opacity: 0.8;
+  text-decoration: underline;
 }
 
 /* Geometric Minimal Accent Block */
@@ -156,7 +215,7 @@ input, textarea {
   flex-shrink: 0;
 }
 
-/* Minimal Custom Scrollbar */
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -164,20 +223,19 @@ input, textarea {
   background: #050505;
 }
 ::-webkit-scrollbar-thumb {
-  background: #222;
+  background: #252525;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent-orange);
 }
 
-/* Selection */
 ::selection {
   background: var(--accent-orange);
   color: #ffffff;
 }
 
-/* Animations */
+/* Micro Animations */
 @keyframes fadeIn {
   from {
     opacity: 0;

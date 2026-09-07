@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ScrollToTop from './components/ScrollToTop';
+import BackgroundVideo from './components/BackgroundVideo';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
@@ -17,9 +18,25 @@ export default function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <div className="app-root" style={{ minHeight: '100vh', backgroundColor: '#000000', display: 'flex', flexDirection: 'column' }}>
+      <div
+        className="app-root"
+        style={{
+          minHeight: '100vh',
+          backgroundColor: 'transparent',
+          position: 'relative',
+          display: 'flex',
+          flexDirection: 'column',
+          overflow: 'hidden',
+        }}
+      >
+        {/* Global Background Video running smoothly behind all glass sections */}
+        <BackgroundVideo />
+
+        {/* Global Liquid Glass Navbar */}
         <Navbar />
-        <main style={{ flex: 1 }}>
+
+        {/* Main Content with Route Views */}
+        <main style={{ flex: 1, position: 'relative', zIndex: 1 }}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />
@@ -30,6 +47,8 @@ export default function App() {
             <Route path="/contact" element={<ContactPage />} />
           </Routes>
         </main>
+
+        {/* Global Liquid Glass Footer */}
         <Footer />
       </div>
     </BrowserRouter>

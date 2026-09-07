@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import handlingInspectionImg from '../assets/handling-inspection.jpg';
-import { CheckCircle2, ArrowRight, ShieldCheck, MapPin, ClipboardList, CheckSquare } from 'lucide-react';
+import { ArrowRight, ChevronRight, CheckSquare } from 'lucide-react';
 
 export default function ProcessPage() {
   const steps = [
@@ -56,13 +56,19 @@ export default function ProcessPage() {
   ];
 
   return (
-    <div style={{ paddingTop: 'var(--header-height)', backgroundColor: '#000000', minHeight: '100vh' }}>
+    <div style={{ paddingTop: 'calc(var(--header-height) + 1.5rem)', minHeight: '100vh', position: 'relative', zIndex: 1 }}>
       
-      {/* 1. Page Header */}
-      <section className="editorial-section" style={{ paddingBottom: '3rem' }}>
+      {/* 1. Page Header with Breadcrumb */}
+      <section className="editorial-section" style={{ paddingBottom: '3rem', paddingTop: '2rem' }}>
         <div className="container">
+          <div className="editorial-breadcrumb">
+            <Link to="/">Home</Link>
+            <ChevronRight size={12} />
+            <span style={{ color: '#ffffff' }}>Operational Process</span>
+          </div>
+
           <div style={{ maxWidth: '880px' }}>
-            <span className="editorial-label" style={{ color: 'var(--accent-orange)', marginBottom: '1rem' }}>
+            <span className="editorial-label" style={{ marginBottom: '1rem' }}>
               OPERATIONAL METHODOLOGY
             </span>
             <h1
@@ -87,17 +93,17 @@ export default function ProcessPage() {
       {/* 2. Visual Showcase */}
       <div className="container" style={{ marginBottom: '5rem' }}>
         <div
+          className="liquid-glass"
           style={{
             position: 'relative',
             borderRadius: '2px',
             overflow: 'hidden',
-            border: '1px solid var(--border-hairline)',
           }}
         >
           <img
             src={handlingInspectionImg}
             alt="Rigging and Inspection Procedures"
-            style={{ width: '100%', height: '480px', objectFit: 'cover', display: 'block' }}
+            style={{ width: '100%', height: '480px', objectFit: 'cover', display: 'block', opacity: 0.95 }}
           />
           <div
             style={{
@@ -105,7 +111,7 @@ export default function ProcessPage() {
               bottom: 0,
               left: 0,
               right: 0,
-              background: 'linear-gradient(to top, rgba(0,0,0,0.92) 0%, transparent 80%)',
+              background: 'linear-gradient(to top, rgba(6, 6, 10, 0.95) 0%, transparent 80%)',
               padding: '2.5rem 2rem 1.5rem',
             }}
           >
@@ -119,11 +125,11 @@ export default function ProcessPage() {
         </div>
       </div>
 
-      {/* 3. Detailed 4-Step Process Section */}
-      <section className="editorial-section" style={{ backgroundColor: '#050505', borderTop: '1px solid var(--border-hairline)', borderBottom: '1px solid var(--border-hairline)' }}>
+      {/* 3. Detailed 4-Step Process Section (Liquid Glass) */}
+      <section className="editorial-section">
         <div className="container">
           <div style={{ marginBottom: '3.5rem' }}>
-            <span className="editorial-label" style={{ color: 'var(--accent-orange)', marginBottom: '0.75rem' }}>
+            <span className="editorial-label" style={{ marginBottom: '0.75rem' }}>
               THE 4-STAGE FRAMEWORK
             </span>
             <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)', color: '#ffffff', fontWeight: 300 }}>
@@ -135,20 +141,16 @@ export default function ProcessPage() {
             {steps.map((step) => (
               <div
                 key={step.num}
+                className="liquid-glass-card"
                 style={{
-                  backgroundColor: 'rgba(255, 255, 255, 0.02)',
-                  border: '1px solid var(--border-hairline)',
                   padding: '2.5rem',
                   display: 'grid',
                   gridTemplateColumns: '1fr',
                   gap: '2rem',
-                  transition: 'border-color 0.2s ease',
+                  borderRadius: '2px',
                 }}
                 className="step-grid"
-                onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'rgba(255, 85, 0, 0.5)')}
-                onMouseLeave={(e) => (e.currentTarget.style.borderColor = 'var(--border-hairline)')}
               >
-                {/* Step Metadata & Title */}
                 <div>
                   <div style={{ display: 'flex', alignItems: 'baseline', gap: '1rem', marginBottom: '1rem' }}>
                     <span style={{ fontFamily: 'var(--font-mono)', fontSize: '2.5rem', color: 'var(--accent-orange)', fontWeight: 300, lineHeight: 1 }}>
@@ -167,7 +169,6 @@ export default function ProcessPage() {
                   </p>
                 </div>
 
-                {/* Step Breakdown Checkpoints */}
                 <div style={{ borderLeft: '1px solid rgba(255, 255, 255, 0.08)', paddingLeft: '2rem' }} className="step-breakdown-col">
                   <span style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)', letterSpacing: '0.2em', textTransform: 'uppercase', display: 'block', marginBottom: '1.25rem' }}>
                     OPERATIONAL PROTOCOLS
@@ -202,34 +203,63 @@ export default function ProcessPage() {
         `}</style>
       </section>
 
-      {/* 4. Bottom Action */}
-      <section className="editorial-section" style={{ backgroundColor: '#000000' }}>
+      {/* 4. Bottom Return / Link Strip */}
+      <section className="editorial-section">
         <div className="container">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '2rem' }}>
+          <div
+            className="liquid-glass"
+            style={{
+              padding: '2.5rem 3rem',
+              borderRadius: '2px',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+              gap: '2rem',
+            }}
+          >
             <div>
-              <span className="editorial-label-muted">EXPERIENCE PRECISION</span>
+              <span className="editorial-label-muted">DISPATCH CONSULTATION</span>
               <h3 style={{ fontSize: '1.85rem', color: '#ffffff', fontWeight: 300, marginTop: '0.5rem' }}>
                 Ready to coordinate your next delivery?
               </h3>
             </div>
-            <Link
-              to="/contact"
-              style={{
-                backgroundColor: 'var(--accent-orange)',
-                color: '#ffffff',
-                padding: '0.9rem 2rem',
-                fontSize: '0.8125rem',
-                fontWeight: 600,
-                letterSpacing: '0.18em',
-                textTransform: 'uppercase',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.75rem',
-              }}
-            >
-              Contact Operations Desk
-              <ArrowRight size={15} />
-            </Link>
+            <div style={{ display: 'flex', gap: '1.25rem', flexWrap: 'wrap' }}>
+              <Link
+                to="/"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  fontSize: '0.8125rem',
+                  letterSpacing: '0.15em',
+                  textTransform: 'uppercase',
+                  color: '#ffffff',
+                  padding: '0.85rem 1.5rem',
+                  border: '1px solid rgba(255, 255, 255, 0.25)',
+                }}
+              >
+                ← Return to Home
+              </Link>
+              <Link
+                to="/contact"
+                style={{
+                  backgroundColor: 'var(--accent-orange)',
+                  color: '#ffffff',
+                  padding: '0.85rem 1.75rem',
+                  fontSize: '0.8125rem',
+                  fontWeight: 600,
+                  letterSpacing: '0.18em',
+                  textTransform: 'uppercase',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.75rem',
+                }}
+              >
+                Contact Operations Desk
+                <ArrowRight size={15} />
+              </Link>
+            </div>
           </div>
         </div>
       </section>

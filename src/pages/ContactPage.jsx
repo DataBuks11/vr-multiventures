@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { ArrowRight, CheckCircle, Phone, Mail, MapPin, RefreshCw, HelpCircle, Clock } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ArrowRight, CheckCircle, Phone, Mail, MapPin, RefreshCw, HelpCircle, Clock, ChevronRight } from 'lucide-react';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -62,13 +63,19 @@ export default function ContactPage() {
   ];
 
   return (
-    <div style={{ paddingTop: 'var(--header-height)', backgroundColor: '#000000', minHeight: '100vh' }}>
+    <div style={{ paddingTop: 'calc(var(--header-height) + 1.5rem)', minHeight: '100vh', position: 'relative', zIndex: 1 }}>
       
-      {/* 1. Page Header */}
-      <section className="editorial-section" style={{ paddingBottom: '3rem' }}>
+      {/* 1. Page Header with Breadcrumb to Home */}
+      <section className="editorial-section" style={{ paddingBottom: '2.5rem', paddingTop: '2rem' }}>
         <div className="container">
+          <div className="editorial-breadcrumb">
+            <Link to="/">Home</Link>
+            <ChevronRight size={12} />
+            <span style={{ color: '#ffffff' }}>Dispatch & Inquiries</span>
+          </div>
+
           <div style={{ maxWidth: '880px' }}>
-            <span className="editorial-label" style={{ color: 'var(--accent-orange)', marginBottom: '1rem' }}>
+            <span className="editorial-label" style={{ marginBottom: '1rem' }}>
               DISPATCH & INQUIRIES
             </span>
             <h1
@@ -90,14 +97,25 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* 2. Main Contact Form & Channels */}
-      <section className="editorial-section" style={{ backgroundColor: '#050505', borderTop: '1px solid var(--border-hairline)', borderBottom: '1px solid var(--border-hairline)', paddingTop: '4rem' }}>
+      {/* 2. Main Contact Form & Channels (Liquid Glass Panel) */}
+      <section className="editorial-section" style={{ paddingTop: '1rem', paddingBottom: '4rem' }}>
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '4.5rem', alignItems: 'start' }} className="contact-main-grid">
+          <div
+            className="liquid-glass"
+            style={{
+              padding: '3.5rem 3rem',
+              borderRadius: '2px',
+              display: 'grid',
+              gridTemplateColumns: '1fr',
+              gap: '4.5rem',
+              alignItems: 'start',
+            }}
+            className="contact-main-grid"
+          >
             
-            {/* Left Column: Direct Operations Placeholders */}
+            {/* Left Column: Direct Operations Details */}
             <div>
-              <span className="editorial-label" style={{ color: 'var(--accent-orange)', marginBottom: '1rem' }}>
+              <span className="editorial-label" style={{ marginBottom: '1rem' }}>
                 DIRECT COORDINATION
               </span>
               <h2 style={{ fontSize: '2.25rem', color: '#ffffff', fontWeight: 300, marginBottom: '1.5rem', lineHeight: 1.2 }}>
@@ -194,12 +212,12 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Right Column: Full Enterprise Inquiry Form */}
+            {/* Right Column: Full Enterprise Inquiry Form (Liquid Glass Card) */}
             <div
+              className="liquid-glass-card"
               style={{
-                backgroundColor: 'rgba(255, 255, 255, 0.02)',
-                border: '1px solid var(--border-hairline)',
                 padding: '2.5rem',
+                borderRadius: '2px',
                 position: 'relative',
               }}
             >
@@ -378,11 +396,11 @@ export default function ContactPage() {
         `}</style>
       </section>
 
-      {/* 3. Contractor FAQs */}
-      <section className="editorial-section" style={{ backgroundColor: '#000000' }}>
+      {/* 3. Contractor FAQs (Liquid Glass Cards) */}
+      <section className="editorial-section" style={{ paddingTop: '2rem', paddingBottom: '6rem' }}>
         <div className="container">
           <div style={{ marginBottom: '3.5rem', maxWidth: '720px' }}>
-            <span className="editorial-label" style={{ color: 'var(--accent-orange)', marginBottom: '0.75rem' }}>
+            <span className="editorial-label" style={{ marginBottom: '0.75rem' }}>
               FREQUENTLY ASKED QUESTIONS
             </span>
             <h2 style={{ fontSize: 'clamp(2rem, 3.5vw, 3rem)', color: '#ffffff', fontWeight: 300 }}>
@@ -390,9 +408,16 @@ export default function ContactPage() {
             </h2>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2.5rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
             {faqs.map((faq, idx) => (
-              <div key={idx} style={{ borderTop: '1px solid var(--border-hairline)', paddingTop: '1.5rem' }}>
+              <div
+                key={idx}
+                className="liquid-glass-card"
+                style={{
+                  padding: '2rem',
+                  borderRadius: '2px',
+                }}
+              >
                 <h4 style={{ fontSize: '1.15rem', color: '#ffffff', fontWeight: 400, marginBottom: '0.75rem' }}>
                   {faq.q}
                 </h4>

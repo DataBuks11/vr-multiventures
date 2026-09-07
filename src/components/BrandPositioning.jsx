@@ -15,21 +15,29 @@ export default function BrandPositioning() {
       id="positioning"
       className="editorial-section"
       style={{
-        backgroundColor: '#000000',
+        position: 'relative',
+        zIndex: 2,
         borderTop: '1px solid var(--border-hairline)',
         borderBottom: '1px solid var(--border-hairline)',
       }}
     >
       <div className="container">
         <div
+          className="liquid-glass"
           style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr',
-            gap: '3.5rem',
-            alignItems: 'start',
+            padding: '3.5rem 3rem',
+            borderRadius: '2px',
           }}
-          className="positioning-grid"
         >
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr',
+              gap: '3.5rem',
+              alignItems: 'start',
+            }}
+            className="positioning-grid"
+          >
           {/* Left Column: Sector Labels & Orange Geometric Accent */}
           <div
             style={{
@@ -149,6 +157,7 @@ export default function BrandPositioning() {
           </div>
         </div>
       </div>
+    </div>
 
       <style>{`
         @media (min-width: 860px) {

@@ -1,17 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logisticsHubImg from '../assets/logistics-hub.jpg';
-import { ShieldCheck, Compass, CheckCircle2, ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronRight, ShieldCheck } from 'lucide-react';
 
 export default function AboutPage() {
   return (
-    <div style={{ paddingTop: 'var(--header-height)', backgroundColor: '#000000', minHeight: '100vh' }}>
+    <div style={{ paddingTop: 'calc(var(--header-height) + 1.5rem)', minHeight: '100vh', position: 'relative', zIndex: 1 }}>
       
-      {/* 1. Page Header */}
-      <section className="editorial-section" style={{ paddingBottom: '3rem' }}>
+      {/* 1. Page Header with Breadcrumb to Home */}
+      <section className="editorial-section" style={{ paddingBottom: '3rem', paddingTop: '2rem' }}>
         <div className="container">
+          <div className="editorial-breadcrumb">
+            <Link to="/">Home</Link>
+            <ChevronRight size={12} />
+            <span style={{ color: '#ffffff' }}>About Enterprise</span>
+          </div>
+
           <div style={{ maxWidth: '850px' }}>
-            <span className="editorial-label" style={{ color: 'var(--accent-orange)', marginBottom: '1rem' }}>
+            <span className="editorial-label" style={{ marginBottom: '1rem' }}>
               ABOUT VR MULTIVENTURES
             </span>
             <h1
@@ -21,7 +27,7 @@ export default function AboutPage() {
                 lineHeight: 1.1,
                 color: '#ffffff',
                 letterSpacing: '-0.025em',
-                marginBottom: '2rem',
+                marginBottom: '1.75rem',
               }}
             >
               Multiple ventures.<br />
@@ -34,21 +40,20 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 2. Hero Visual Showcase */}
+      {/* 2. Visual Showcase (Liquid Glass Framed) */}
       <div className="container" style={{ marginBottom: '5rem' }}>
         <div
+          className="liquid-glass"
           style={{
             position: 'relative',
             borderRadius: '2px',
             overflow: 'hidden',
-            border: '1px solid var(--border-hairline)',
-            boxShadow: '0 20px 40px rgba(0,0,0,0.8)',
           }}
         >
           <img
             src={logisticsHubImg}
             alt="VR Multiventures Logistics Operations Terminal"
-            style={{ width: '100%', height: '520px', objectFit: 'cover', display: 'block' }}
+            style={{ width: '100%', height: '500px', objectFit: 'cover', display: 'block', opacity: 0.95 }}
           />
           <div
             style={{
@@ -56,7 +61,7 @@ export default function AboutPage() {
               bottom: 0,
               left: 0,
               right: 0,
-              background: 'linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 60%, transparent 100%)',
+              background: 'linear-gradient(to top, rgba(6, 6, 10, 0.95) 0%, rgba(6, 6, 10, 0.4) 60%, transparent 100%)',
               padding: '2.5rem',
               display: 'flex',
               justifyContent: 'space-between',
@@ -80,12 +85,22 @@ export default function AboutPage() {
         </div>
       </div>
 
-      {/* 3. Deep Corporate Story & Vision */}
-      <section className="editorial-section" style={{ backgroundColor: '#050505', borderTop: '1px solid var(--border-hairline)', borderBottom: '1px solid var(--border-hairline)' }}>
+      {/* 3. Deep Corporate Story & Vision (Liquid Glass Panel) */}
+      <section className="editorial-section">
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '4rem' }} className="about-details-grid">
+          <div
+            className="liquid-glass"
+            style={{
+              padding: '3.5rem',
+              borderRadius: '2px',
+              display: 'grid',
+              gridTemplateColumns: '1fr',
+              gap: '4rem',
+            }}
+            className="about-details-grid"
+          >
             <div>
-              <span className="editorial-label" style={{ color: 'var(--accent-orange)', marginBottom: '1rem' }}>
+              <span className="editorial-label" style={{ marginBottom: '1rem' }}>
                 OPERATIONAL GENESIS
               </span>
               <h2 style={{ fontSize: '2.5rem', fontWeight: 300, color: '#ffffff', lineHeight: 1.15 }}>
@@ -109,17 +124,17 @@ export default function AboutPage() {
         <style>{`
           @media (min-width: 860px) {
             .about-details-grid {
-              grid-template-columns: 380px 1fr !important;
+              grid-template-columns: 360px 1fr !important;
             }
           }
         `}</style>
       </section>
 
-      {/* 4. Three Guiding Principles */}
-      <section className="editorial-section" style={{ backgroundColor: '#000000', borderBottom: '1px solid var(--border-hairline)' }}>
+      {/* 4. Three Guiding Principles (Liquid Glass Cards) */}
+      <section className="editorial-section">
         <div className="container">
           <div style={{ marginBottom: '3.5rem' }}>
-            <span className="editorial-label" style={{ color: 'var(--accent-orange)', marginBottom: '0.75rem' }}>
+            <span className="editorial-label" style={{ marginBottom: '0.75rem' }}>
               OUR FOUNDATIONAL PILLARS
             </span>
             <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)', color: '#ffffff', fontWeight: 300 }}>
@@ -128,7 +143,7 @@ export default function AboutPage() {
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
-            <div style={{ border: '1px solid var(--border-hairline)', padding: '2.5rem', backgroundColor: 'rgba(255, 255, 255, 0.02)' }}>
+            <div className="liquid-glass-card" style={{ padding: '2.5rem', borderRadius: '2px' }}>
               <span style={{ fontSize: '0.8125rem', color: 'var(--accent-orange)', fontFamily: 'var(--font-mono)', letterSpacing: '0.15em' }}>
                 01 / OPERATIONAL DISCIPLINE
               </span>
@@ -140,7 +155,7 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div style={{ border: '1px solid var(--border-hairline)', padding: '2.5rem', backgroundColor: 'rgba(255, 255, 255, 0.02)' }}>
+            <div className="liquid-glass-card" style={{ padding: '2.5rem', borderRadius: '2px' }}>
               <span style={{ fontSize: '0.8125rem', color: 'var(--accent-orange)', fontFamily: 'var(--font-mono)', letterSpacing: '0.15em' }}>
                 02 / PARTNER ALIGNMENT
               </span>
@@ -152,7 +167,7 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div style={{ border: '1px solid var(--border-hairline)', padding: '2.5rem', backgroundColor: 'rgba(255, 255, 255, 0.02)' }}>
+            <div className="liquid-glass-card" style={{ padding: '2.5rem', borderRadius: '2px' }}>
               <span style={{ fontSize: '0.8125rem', color: 'var(--accent-orange)', fontFamily: 'var(--font-mono)', letterSpacing: '0.15em' }}>
                 03 / SUSTAINABLE HORIZON
               </span>
@@ -167,17 +182,44 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 5. Next Steps Navigation Strip */}
-      <section className="editorial-section" style={{ backgroundColor: '#070707' }}>
+      {/* 5. Return Home / Next Steps Strip */}
+      <section className="editorial-section">
         <div className="container">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '2rem' }}>
+          <div
+            className="liquid-glass"
+            style={{
+              padding: '2.5rem 3rem',
+              borderRadius: '2px',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+              gap: '2rem',
+            }}
+          >
             <div>
               <span className="editorial-label-muted">CONTINUE EXPLORING</span>
               <h3 style={{ fontSize: '1.75rem', color: '#ffffff', fontWeight: 300, marginTop: '0.5rem' }}>
-                Learn more about our services or key partnership.
+                Navigate to services or return to the main overview.
               </h3>
             </div>
-            <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', gap: '1.25rem', flexWrap: 'wrap' }}>
+              <Link
+                to="/"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  fontSize: '0.8125rem',
+                  letterSpacing: '0.15em',
+                  textTransform: 'uppercase',
+                  color: '#ffffff',
+                  padding: '0.85rem 1.5rem',
+                  border: '1px solid rgba(255, 255, 255, 0.25)',
+                }}
+              >
+                ← Back to Home
+              </Link>
               <Link
                 to="/services"
                 style={{
@@ -190,25 +232,10 @@ export default function AboutPage() {
                   color: 'var(--accent-orange)',
                   padding: '0.85rem 1.5rem',
                   border: '1px solid rgba(255, 85, 0, 0.4)',
+                  backgroundColor: 'rgba(255, 85, 0, 0.08)',
                 }}
               >
                 Specialized Services <ArrowRight size={14} />
-              </Link>
-              <Link
-                to="/partner"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                  fontSize: '0.8125rem',
-                  letterSpacing: '0.15em',
-                  textTransform: 'uppercase',
-                  color: '#ffffff',
-                  padding: '0.85rem 1.5rem',
-                  border: '1px solid var(--border-hairline)',
-                }}
-              >
-                Key Partner <ArrowRight size={14} />
               </Link>
             </div>
           </div>
