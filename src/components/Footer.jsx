@@ -16,7 +16,7 @@ export default function Footer() {
     <footer
       className="liquid-glass"
       style={{
-        backgroundColor: 'rgba(8, 8, 12, 0.65)',
+        backgroundColor: 'var(--bg-glass-heavy)',
         backdropFilter: 'blur(16px)',
         WebkitBackdropFilter: 'blur(16px)',
         borderTop: '1px solid var(--border-glass)',
@@ -24,6 +24,7 @@ export default function Footer() {
         paddingBottom: '3rem',
         position: 'relative',
         zIndex: 2,
+        transition: 'background-color 0.3s ease, border-color 0.3s ease',
       }}
     >
       <div className="container">
@@ -42,22 +43,24 @@ export default function Footer() {
           {/* Logo & Tagline */}
           <div style={{ maxWidth: '420px' }}>
             <Link to="/" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.85rem', marginBottom: '1.25rem' }}>
-              <img
-                src={vrSymbol}
-                alt="VR"
-                style={{
-                  height: '32px',
-                  width: 'auto',
-                  display: 'block',
-                  objectFit: 'contain',
-                }}
-              />
+              <div className="brand-logo-badge">
+                <img
+                  src={vrSymbol}
+                  alt="VR"
+                  style={{
+                    height: '32px',
+                    width: 'auto',
+                    display: 'block',
+                    objectFit: 'contain',
+                  }}
+                />
+              </div>
               <span
                 style={{
                   fontSize: '1.25rem',
                   fontWeight: 600,
                   letterSpacing: '-0.015em',
-                  color: '#ffffff',
+                  color: 'var(--text-primary)',
                   fontFamily: 'var(--font-heading)',
                 }}
               >
@@ -188,7 +191,7 @@ export default function Footer() {
               fontFamily: 'var(--font-mono)',
               letterSpacing: '0.18em',
               textTransform: 'uppercase',
-              color: '#ffffff',
+              color: 'var(--text-primary)',
             }}
           >
             DIVERSE VENTURES. BRIGHTER TOMORROWS.
@@ -206,16 +209,16 @@ export default function Footer() {
               textTransform: 'uppercase',
               color: 'var(--text-secondary)',
               padding: '0.4rem 0.75rem',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
+              border: '1px solid var(--border-hairline)',
               backgroundColor: 'transparent',
               transition: 'all 0.2s ease',
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.borderColor = 'var(--accent-orange)';
-              e.currentTarget.style.color = '#ffffff';
+              e.currentTarget.style.color = 'var(--text-primary)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+              e.currentTarget.style.borderColor = 'var(--border-hairline)';
               e.currentTarget.style.color = 'var(--text-secondary)';
             }}
           >

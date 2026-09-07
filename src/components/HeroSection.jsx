@@ -14,7 +14,8 @@ export default function HeroSection() {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
-        backgroundColor: '#000000',
+        backgroundColor: 'var(--bg-primary)',
+        transition: 'background-color 0.4s ease',
         overflow: 'hidden',
       }}
     >
@@ -42,7 +43,7 @@ export default function HeroSection() {
             justifyContent: 'space-between',
             alignItems: 'flex-start',
             paddingBottom: '1.75rem',
-            borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+            borderBottom: '1px solid var(--border-hairline)',
             marginBottom: '2rem',
           }}
         >
@@ -59,7 +60,7 @@ export default function HeroSection() {
             <div>MULTIPLE</div>
             <div>VENTURES</div>
             <div>BIGGER</div>
-            <div style={{ color: '#ffffff' }}>TOMORROWS</div>
+            <div style={{ color: 'var(--text-primary)' }}>TOMORROWS</div>
           </div>
 
           <div
@@ -119,7 +120,7 @@ export default function HeroSection() {
           style={{
             marginTop: 'auto',
             paddingTop: '2rem',
-            borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+            borderTop: '1px solid var(--border-hairline)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
@@ -144,7 +145,7 @@ export default function HeroSection() {
             <p
               style={{
                 fontSize: '1.15rem',
-                color: '#ffffff',
+                color: 'var(--text-primary)',
                 fontWeight: 300,
                 letterSpacing: '-0.01em',
               }}
@@ -164,17 +165,17 @@ export default function HeroSection() {
               textTransform: 'uppercase',
               color: 'var(--text-secondary)',
               padding: '0.6rem 1rem',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
+              border: '1px solid var(--border-hairline)',
               borderRadius: '2px',
-              backgroundColor: 'rgba(255, 255, 255, 0.02)',
+              backgroundColor: 'var(--bg-glass-light)',
               transition: 'all 0.2s ease',
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.borderColor = 'var(--accent-orange)';
-              e.currentTarget.style.color = '#ffffff';
+              e.currentTarget.style.color = 'var(--text-primary)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+              e.currentTarget.style.borderColor = 'var(--border-hairline)';
               e.currentTarget.style.color = 'var(--text-secondary)';
             }}
           >

@@ -4,33 +4,71 @@
 
 :root {
   --bg-primary: #000000;
-  --bg-glass-heavy: rgba(10, 10, 14, 0.55);
-  --bg-glass-medium: rgba(12, 12, 16, 0.38);
+  --bg-glass-heavy: rgba(10, 10, 14, 0.65);
+  --bg-glass-medium: rgba(12, 12, 16, 0.42);
+  --bg-glass-card: rgba(14, 14, 18, 0.42);
+  --bg-glass-card-hover: rgba(22, 22, 28, 0.65);
   --bg-glass-light: rgba(255, 255, 255, 0.05);
-  
+
+  --navbar-bg: rgba(10, 10, 14, 0.55);
+  --navbar-bg-scrolled: rgba(6, 6, 8, 0.82);
+
   --text-primary: #ffffff;
   --text-secondary: #c0c0c8;
   --text-muted: #757582;
   --text-dim: #454552;
-  
+
   --accent-orange: #ff5500;
   --accent-orange-hover: #ff6e26;
   --accent-orange-glow: rgba(255, 85, 0, 0.25);
-  
+
   --border-hairline: rgba(255, 255, 255, 0.12);
   --border-strong: rgba(255, 255, 255, 0.22);
   --border-glass: rgba(255, 255, 255, 0.16);
   --border-accent: rgba(255, 85, 0, 0.6);
-  
+
+  --input-bg: rgba(0, 0, 0, 0.6);
+
   --font-sans: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-heading: 'Manrope', var(--font-sans);
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
-  
+
   --container-max: 1360px;
   --header-height: 80px;
-  
+
   --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-fast: all 0.15s ease;
+}
+
+/* ==========================================================================
+   Light Mode Theme Variables
+   ========================================================================== */
+[data-theme="light"] {
+  --bg-primary: #f6f7f9;
+  --bg-glass-heavy: rgba(255, 255, 255, 0.88);
+  --bg-glass-medium: rgba(255, 255, 255, 0.74);
+  --bg-glass-card: rgba(255, 255, 255, 0.78);
+  --bg-glass-card-hover: rgba(255, 255, 255, 0.96);
+  --bg-glass-light: rgba(0, 0, 0, 0.04);
+
+  --navbar-bg: rgba(246, 247, 249, 0.82);
+  --navbar-bg-scrolled: rgba(255, 255, 255, 0.95);
+
+  --text-primary: #0b0b10;
+  --text-secondary: #3f3f4e;
+  --text-muted: #6b6b7d;
+  --text-dim: #9494a4;
+
+  --accent-orange: #ff5500;
+  --accent-orange-hover: #e04a00;
+  --accent-orange-glow: rgba(255, 85, 0, 0.2);
+
+  --border-hairline: rgba(0, 0, 0, 0.08);
+  --border-strong: rgba(0, 0, 0, 0.18);
+  --border-glass: rgba(0, 0, 0, 0.11);
+  --border-accent: rgba(255, 85, 0, 0.7);
+
+  --input-bg: rgba(255, 255, 255, 0.95);
 }
 
 *, *::before, *::after {
@@ -58,6 +96,7 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   position: relative;
+  transition: background-color 0.35s ease, color 0.35s ease;
 }
 
 .logoipsum {
@@ -117,39 +156,99 @@ input, textarea, select {
   }
 }
 
-/* Liquid Glass Utilities */
+/* ==========================================================================
+   Brand Logo Badge (Crisp preservation of white 'V' + orange 'R')
+   ========================================================================== */
+.brand-logo-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  border-radius: 4px;
+  transition: all 0.25s ease;
+}
+
+[data-theme="light"] .brand-logo-badge {
+  background: #08080c;
+  padding: 4px 8px;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+}
+
+/* ==========================================================================
+   Liquid Glass Utilities (Adaptive Light & Dark)
+   ========================================================================== */
 .liquid-glass {
   background: var(--bg-glass-medium);
   backdrop-filter: blur(12px) saturate(150%);
   -webkit-backdrop-filter: blur(12px) saturate(150%);
   border: 1px solid var(--border-glass);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition: background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
 }
 
 .liquid-glass-card {
-  background: rgba(14, 14, 18, 0.42);
+  background: var(--bg-glass-card);
   backdrop-filter: blur(12px) saturate(150%);
   -webkit-backdrop-filter: blur(12px) saturate(150%);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid var(--border-hairline);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .liquid-glass-card:hover {
-  background: rgba(22, 22, 28, 0.58);
+  background: var(--bg-glass-card-hover);
   border-color: rgba(255, 85, 0, 0.55);
   transform: translateY(-3px);
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 24px rgba(255, 85, 0, 0.2);
 }
 
 .liquid-glass-panel {
-  background: rgba(10, 10, 14, 0.36);
+  background: var(--bg-glass-medium);
   backdrop-filter: blur(10px) saturate(140%);
   -webkit-backdrop-filter: blur(10px) saturate(140%);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--border-hairline);
+  transition: background-color 0.35s ease, border-color 0.35s ease;
 }
 
-/* Editorial Labels & Tags */
+/* Light Mode Liquid Glass Overrides */
+[data-theme="light"] .liquid-glass {
+  background: var(--bg-glass-heavy);
+  border-color: var(--border-glass);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+[data-theme="light"] .liquid-glass-card {
+  background: var(--bg-glass-card);
+  border-color: var(--border-hairline);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+[data-theme="light"] .liquid-glass-card:hover {
+  background: var(--bg-glass-card-hover);
+  border-color: var(--accent-orange);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08), 0 0 20px rgba(255, 85, 0, 0.15);
+}
+
+[data-theme="light"] .liquid-glass-panel {
+  background: var(--bg-glass-medium);
+  border-color: var(--border-hairline);
+}
+
+/* ==========================================================================
+   Background Video Light Mode Blueprint Effect
+   ========================================================================== */
+[data-theme="light"] .bg-video-element {
+  filter: invert(1) hue-rotate(180deg) contrast(1.15) brightness(0.98) !important;
+  opacity: 0.26 !important;
+}
+
+[data-theme="light"] .bg-video-overlay {
+  background: radial-gradient(circle at 50% 50%, rgba(246, 247, 249, 0.2) 0%, rgba(238, 240, 245, 0.72) 100%) !important;
+}
+
+/* ==========================================================================
+   Editorial Labels & Tags
+   ========================================================================== */
 .editorial-label {
   font-size: 0.75rem;
   font-weight: 500;
@@ -237,9 +336,69 @@ input, textarea, select {
   background: var(--accent-orange);
 }
 
+[data-theme="light"] ::-webkit-scrollbar-track {
+  background: #f0f0f2;
+}
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: #d0d0d6;
+}
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-orange);
+}
+
 ::selection {
   background: var(--accent-orange);
   color: #ffffff;
+}
+
+/* ==========================================================================
+   Light Mode Global Typography & Inline Element Overrides
+   ========================================================================== */
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3,
+[data-theme="light"] h4,
+[data-theme="light"] h5,
+[data-theme="light"] h6 {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="light"] [style*="color: #ffffff"],
+[data-theme="light"] [style*="color:#ffffff"],
+[data-theme="light"] [style*="color: rgb(255, 255, 255)"] {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="light"] [style*="color: #e0e0e0"],
+[data-theme="light"] [style*="color:#e0e0e0"] {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="light"] .editorial-breadcrumb span:last-child {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="light"] .logoipsum {
+  color: var(--text-primary) !important;
+}
+
+/* Light Mode Form Elements */
+[data-theme="light"] input,
+[data-theme="light"] textarea,
+[data-theme="light"] select {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  color: #0b0b10 !important;
+  border-color: rgba(0, 0, 0, 0.14) !important;
+}
+
+[data-theme="light"] input::placeholder,
+[data-theme="light"] textarea::placeholder {
+  color: #888898 !important;
+}
+
+[data-theme="light"] select option {
+  background-color: #ffffff !important;
+  color: #0b0b10 !important;
 }
 
 /* Micro Animations */
@@ -320,6 +479,9 @@ html.lenis body {
     border-color: rgba(255, 85, 0, 0.65) !important;
     box-shadow: 0 16px 36px rgba(0, 0, 0, 0.55), 0 0 24px rgba(255, 85, 0, 0.25) !important;
   }
+  [data-theme="light"] .liquid-glass-card:hover {
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08), 0 0 24px rgba(255, 85, 0, 0.2) !important;
+  }
 }
 
 /* Touch Active Feedback (Mobile) */
@@ -329,4 +491,3 @@ html.lenis body {
     transition-duration: 0.15s;
   }
 }
-

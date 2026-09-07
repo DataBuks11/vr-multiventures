@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { ThemeProvider } from './context/ThemeContext';
 import SmoothScroll from './components/SmoothScroll';
 import BackgroundVideo from './components/BackgroundVideo';
 import Navbar from './components/Navbar';
@@ -16,8 +17,9 @@ import ContactPage from './pages/ContactPage';
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <SmoothScroll>
+    <ThemeProvider>
+      <BrowserRouter>
+        <SmoothScroll>
         <div
           className="app-root"
           style={{
@@ -53,5 +55,6 @@ export default function App() {
       </div>
     </SmoothScroll>
   </BrowserRouter>
+</ThemeProvider>
 );
 }

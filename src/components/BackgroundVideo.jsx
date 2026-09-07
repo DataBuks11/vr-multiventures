@@ -16,6 +16,7 @@ export default function BackgroundVideo() {
       aria-hidden="true"
     >
       <video
+        className="bg-video-element"
         autoPlay
         loop
         muted
@@ -26,6 +27,7 @@ export default function BackgroundVideo() {
           objectFit: 'cover',
           opacity: 0.92,
           filter: 'contrast(1.08) brightness(1.02)',
+          transition: 'opacity 0.4s ease, filter 0.4s ease',
         }}
       >
         <source src="/bg-animation.mp4" type="video/mp4" />
@@ -37,11 +39,13 @@ export default function BackgroundVideo() {
 
       {/* Ultra-subtle tint ensuring text contrast while keeping background animation crystal clear */}
       <div
+        className="bg-video-overlay"
         style={{
           position: 'absolute',
           inset: 0,
           background: 'radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.28) 100%)',
           pointerEvents: 'none',
+          transition: 'background 0.4s ease',
         }}
       />
     </div>

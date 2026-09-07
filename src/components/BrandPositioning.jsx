@@ -57,7 +57,7 @@ export default function BrandPositioning() {
                     fontWeight: 600,
                     letterSpacing: '0.22em',
                     textTransform: 'uppercase',
-                    color: sector.active ? '#ffffff' : 'var(--text-muted)',
+                    color: sector.active ? 'var(--text-primary)' : 'var(--text-muted)',
                     display: 'flex',
                     alignItems: 'center',
                     gap: '0.75rem',
@@ -99,7 +99,7 @@ export default function BrandPositioning() {
                 fontWeight: 300,
                 lineHeight: 1.08,
                 letterSpacing: '-0.025em',
-                color: '#ffffff',
+                color: 'var(--text-primary)',
                 marginBottom: '2.5rem',
               }}
             >
@@ -121,7 +121,7 @@ export default function BrandPositioning() {
               }}
             >
               <p>
-                At <strong style={{ color: '#ffffff', fontWeight: 600 }}>VR Multiventures</strong>, we build, invest and operate across diverse industries, creating opportunities that drive sustainable growth and real-world impact.
+                At <strong style={{ color: 'var(--text-primary)', fontWeight: 600 }}>VR Multiventures</strong>, we build, invest and operate across diverse industries, creating opportunities that drive sustainable growth and real-world impact.
               </p>
               <p>
                 From logistics to real estate, technology to trading, we connect resources, people and possibilities to shape a brighter tomorrow.
@@ -134,7 +134,7 @@ export default function BrandPositioning() {
                 marginTop: '2.5rem',
                 padding: '1.5rem',
                 borderLeft: '2px solid var(--accent-orange)',
-                backgroundColor: 'rgba(255, 255, 255, 0.02)',
+                backgroundColor: 'var(--bg-glass-light)',
               }}
             >
               <span
@@ -150,7 +150,7 @@ export default function BrandPositioning() {
               >
                 CURRENT OPERATIONAL FOCUS
               </span>
-              <p style={{ fontSize: '0.95rem', color: '#e0e0e0', margin: 0 }}>
+              <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', margin: 0 }}>
                 Specialized in the local transportation and dependable handling of mobile tower components and telecommunications infrastructure.
               </p>
             </div>
