@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import ScrollToTop from './components/ScrollToTop';
+import SmoothScroll from './components/SmoothScroll';
 import BackgroundVideo from './components/BackgroundVideo';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -17,12 +17,12 @@ import ContactPage from './pages/ContactPage';
 export default function App() {
   return (
     <BrowserRouter>
-      <ScrollToTop />
-      <div
-        className="app-root"
-        style={{
-          minHeight: '100vh',
-          backgroundColor: 'transparent',
+      <SmoothScroll>
+        <div
+          className="app-root"
+          style={{
+            minHeight: '100vh',
+            backgroundColor: 'transparent',
           position: 'relative',
           display: 'flex',
           flexDirection: 'column',
@@ -51,6 +51,7 @@ export default function App() {
         {/* Global Liquid Glass Footer */}
         <Footer />
       </div>
-    </BrowserRouter>
-  );
+    </SmoothScroll>
+  </BrowserRouter>
+);
 }

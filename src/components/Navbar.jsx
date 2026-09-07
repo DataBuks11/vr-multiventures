@@ -210,6 +210,7 @@ export default function Navbar() {
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div
+          data-lenis-prevent="true"
           style={{
             position: 'fixed',
             top: 'var(--header-height)',
@@ -225,6 +226,7 @@ export default function Navbar() {
             padding: '2.5rem 1.5rem',
             borderTop: '1px solid rgba(255, 255, 255, 0.1)',
             zIndex: 99,
+            overflowY: 'auto',
           }}
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>

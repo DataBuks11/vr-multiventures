@@ -41,7 +41,6 @@
 
 html {
   font-size: 16px;
-  scroll-behavior: smooth;
   background-color: var(--bg-primary);
   color: var(--text-primary);
   font-family: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -267,3 +266,50 @@ input, textarea, select {
     scroll-behavior: auto !important;
   }
 }
+
+/* ==========================================================================
+   Lenis Smooth Scroll & Scroll Reveal Animations
+   ========================================================================== */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Fluid scroll-driven reveals */
+.liquid-glass-card,
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.liquid-glass-card.is-revealed,
+.reveal-on-scroll.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger delay for adjacent cards */
+.liquid-glass-card:nth-child(2).is-revealed { transition-delay: 0.07s; }
+.liquid-glass-card:nth-child(3).is-revealed { transition-delay: 0.14s; }
+.liquid-glass-card:nth-child(4).is-revealed { transition-delay: 0.21s; }
+.liquid-glass-card:nth-child(5).is-revealed { transition-delay: 0.28s; }
+.liquid-glass-card:nth-child(6).is-revealed { transition-delay: 0.35s; }
+
