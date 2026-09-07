@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import vrSymbol from '../assets/vr-symbol.png';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 
@@ -19,12 +20,12 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: 'About', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Sectors', href: '#sectors' },
-    { name: 'Partner', href: '#partner' },
-    { name: 'Process', href: '#process' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'About', path: '/about' },
+    { name: 'Services', path: '/services' },
+    { name: 'Sectors', path: '/sectors' },
+    { name: 'Partner', path: '/partner' },
+    { name: 'Process', path: '/process' },
+    { name: 'Contact', path: '/contact' },
   ];
 
   return (
@@ -39,7 +40,7 @@ export default function Navbar() {
         display: 'flex',
         alignItems: 'center',
         borderBottom: scrolled ? '1px solid var(--border-hairline)' : '1px solid transparent',
-        backgroundColor: scrolled ? 'rgba(0, 0, 0, 0.88)' : 'rgba(0, 0, 0, 0.4)',
+        backgroundColor: scrolled ? 'rgba(0, 0, 0, 0.92)' : 'rgba(0, 0, 0, 0.5)',
         backdropFilter: 'blur(16px)',
         WebkitBackdropFilter: 'blur(16px)',
         transition: 'all 0.3s ease',
@@ -53,9 +54,9 @@ export default function Navbar() {
           justifyContent: 'space-between',
         }}
       >
-        {/* Iconic VR Symbol Alone */}
-        <a
-          href="#"
+        {/* Approved Iconic VR Symbol Alone */}
+        <Link
+          to="/"
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -65,7 +66,7 @@ export default function Navbar() {
         >
           <img
             src={vrSymbol}
-            alt="VR"
+            alt="VR Multiventures"
             style={{
               height: '32px',
               width: 'auto',
@@ -76,7 +77,7 @@ export default function Navbar() {
             onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.05)')}
             onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
           />
-        </a>
+        </Link>
 
         {/* Desktop Editorial Navigation */}
         <nav
@@ -88,28 +89,34 @@ export default function Navbar() {
           className="desktop-nav"
         >
           {navLinks.map((link) => (
-            <a
+            <NavLink
               key={link.name}
-              href={link.href}
-              style={{
+              to={link.path}
+              style={({ isActive }) => ({
                 fontSize: '0.8125rem',
                 fontWeight: 500,
                 letterSpacing: '0.16em',
                 textTransform: 'uppercase',
-                color: 'var(--text-secondary)',
+                color: isActive ? '#ffffff' : 'var(--text-secondary)',
                 position: 'relative',
                 padding: '0.5rem 0',
                 transition: 'color 0.2s ease',
-              }}
+                borderBottom: isActive ? '2px solid var(--accent-orange)' : '2px solid transparent',
+              })}
               onMouseEnter={(e) => (e.target.style.color = '#ffffff')}
-              onMouseLeave={(e) => (e.target.style.color = 'var(--text-secondary)')}
+              onMouseLeave={(e) => {
+                // Keep active color if currently on page
+                if (!e.target.classList.contains('active')) {
+                  e.target.style.color = 'var(--text-secondary)';
+                }
+              }}
             >
               {link.name}
-            </a>
+            </NavLink>
           ))}
         </nav>
 
-        {/* Right Status / Action */}
+        {/* Right Status & Direct Action */}
         <div
           style={{
             display: 'none',
@@ -140,11 +147,11 @@ export default function Navbar() {
                 display: 'inline-block',
               }}
             />
-            Logistics Active
+            Fleet Active
           </div>
 
-          <a
-            href="#contact"
+          <Link
+            to="/contact"
             style={{
               fontSize: '0.75rem',
               fontWeight: 600,
@@ -170,7 +177,7 @@ export default function Navbar() {
           >
             Inquire
             <ArrowUpRight size={13} />
-          </a>
+          </Link>
         </div>
 
         {/* Mobile Hamburger Toggle */}
@@ -200,7 +207,7 @@ export default function Navbar() {
             right: 0,
             bottom: 0,
             height: 'calc(100vh - var(--header-height))',
-            backgroundColor: 'rgba(0, 0, 0, 0.96)',
+            backgroundColor: 'rgba(0, 0, 0, 0.97)',
             backdropFilter: 'blur(20px)',
             display: 'flex',
             flexDirection: 'column',
@@ -211,41 +218,40 @@ export default function Navbar() {
           }}
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.75rem' }}>
-            <span className="editorial-label-muted">Navigation Menu</span>
+            <span className="editorial-label-muted">Corporate Navigation</span>
             {navLinks.map((link) => (
-              <a
+              <NavLink
                 key={link.name}
-                href={link.href}
+                to={link.path}
                 onClick={() => setMobileMenuOpen(false)}
-                style={{
+                style={({ isActive }) => ({
                   fontSize: '1.5rem',
                   fontFamily: 'var(--font-heading)',
-                  color: '#ffffff',
+                  color: isActive ? 'var(--accent-orange)' : '#ffffff',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
                   paddingBottom: '0.75rem',
                   borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
-                }}
+                })}
               >
                 {link.name}
                 <ArrowUpRight size={18} color="var(--accent-orange)" />
-              </a>
+              </NavLink>
             ))}
           </div>
 
           <div style={{ borderTop: '1px solid var(--border-hairline)', paddingTop: '1.5rem' }}>
-            <p style={{ fontSize: '0.8125rem', color: 'var(--text-muted)', marginBottom: '0.5rem' }}>
-              VR Multiventures · Infrastructure Transportation
+            <p style={{ fontSize: '0.8125rem', color: 'var(--text-muted)', marginBottom: '0.35rem' }}>
+              VR Multiventures · Telecom Infrastructure Logistics
             </p>
-            <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+            <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
               Moving infrastructure. Connecting possibilities.
             </p>
           </div>
         </div>
       )}
 
-      {/* Media Query Styles for Desktop/Mobile view */}
       <style>{`
         @media (min-width: 900px) {
           .desktop-nav {

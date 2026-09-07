@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import vrSymbol from '../assets/vr-symbol.png';
 import { ArrowUp } from 'lucide-react';
 
@@ -32,7 +33,7 @@ export default function Footer() {
         >
           {/* Logo & Tagline */}
           <div style={{ maxWidth: '420px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', marginBottom: '1.25rem' }}>
+            <Link to="/" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.85rem', marginBottom: '1.25rem' }}>
               <img
                 src={vrSymbol}
                 alt="VR"
@@ -54,14 +55,14 @@ export default function Footer() {
               >
                 VR Multiventures<span style={{ color: 'var(--accent-orange)' }}>.</span>
               </span>
-            </div>
+            </Link>
             <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-              Moving infrastructure. Connecting possibilities. Specializing in reliable logistics and the transportation of critical telecom tower equipment.
+              Moving infrastructure. Connecting possibilities. Specializing in reliable logistics and the local transportation of critical telecom tower equipment.
             </p>
           </div>
 
-          {/* Editorial Quick Links */}
-          <div style={{ display: 'flex', gap: '3.5rem', flexWrap: 'wrap' }}>
+          {/* Multi-Page Navigation Directory */}
+          <div style={{ display: 'flex', gap: '4rem', flexWrap: 'wrap' }}>
             <div>
               <div
                 style={{
@@ -73,15 +74,15 @@ export default function Footer() {
                   marginBottom: '1rem',
                 }}
               >
-                NAVIGATION
+                CORPORATE
               </div>
               <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
-                <li><a href="#about" style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>About Enterprise</a></li>
-                <li><a href="#services" style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>Services & Fleet</a></li>
-                <li><a href="#sectors" style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>Operating Sectors</a></li>
-                <li><a href="#partner" style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>Key Partner</a></li>
-                <li><a href="#process" style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>Methodology</a></li>
-                <li><a href="#contact" style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>Inquire Dispatch</a></li>
+                <li><Link to="/about" style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>About Enterprise</Link></li>
+                <li><Link to="/services" style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>Specialized Services</Link></li>
+                <li><Link to="/sectors" style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>Operating Sectors</Link></li>
+                <li><Link to="/partner" style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>Key Partner</Link></li>
+                <li><Link to="/process" style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>Operational Process</Link></li>
+                <li><Link to="/contact" style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>Dispatch Inquiry</Link></li>
               </ul>
             </div>
 
@@ -96,12 +97,17 @@ export default function Footer() {
                   marginBottom: '1rem',
                 }}
               >
-                DISPATCH HUB
+                OPERATIONS DESK
               </div>
               <div style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', lineHeight: 1.8 }}>
                 <div>+91 [Direct Line Placeholder]</div>
                 <div>ops@vrmultiventures.com [Placeholder]</div>
                 <div>Regional Logistics Center, India [Placeholder]</div>
+                <div style={{ marginTop: '0.75rem' }}>
+                  <span style={{ fontSize: '0.75rem', color: 'var(--accent-orange)', fontFamily: 'var(--font-mono)' }}>
+                    HOURS: 24/7 Dispatch Control
+                  </span>
+                </div>
               </div>
             </div>
           </div>
