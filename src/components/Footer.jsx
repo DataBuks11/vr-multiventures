@@ -117,6 +117,45 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Bottom Industry & Network Trust Strip: Four Logoipsum Wordmarks */}
+        <div
+          style={{
+            padding: '2.25rem 0',
+            borderBottom: '1px solid var(--border-hairline)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+            gap: '2rem',
+          }}
+        >
+          <span
+            style={{
+              fontSize: '0.6875rem',
+              letterSpacing: '0.22em',
+              textTransform: 'uppercase',
+              color: 'var(--text-muted)',
+              fontFamily: 'var(--font-mono)',
+            }}
+          >
+            NETWORK & CORRIDOR ECOSYSTEM
+          </span>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 'clamp(2rem, 4vw, 4rem)',
+              flexWrap: 'wrap',
+              opacity: 0.65,
+            }}
+          >
+            <span className="logoipsum" style={{ fontSize: '1.25rem', color: '#ffffff' }}>logoipsum</span>
+            <span className="logoipsum" style={{ fontSize: '1.25rem', color: '#ffffff' }}>logoipsum</span>
+            <span className="logoipsum" style={{ fontSize: '1.25rem', color: '#ffffff' }}>logoipsum</span>
+            <span className="logoipsum" style={{ fontSize: '1.25rem', color: '#ffffff' }}>logoipsum</span>
+          </div>
+        </div>
+
         {/* Bottom Tier: Copyright & Back to Top */}
         <div
           style={{
