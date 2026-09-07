@@ -12,6 +12,54 @@ export default function Footer() {
     }
   };
 
+  const ecosystemPartners = [
+    {
+      name: 'TOWERGRID',
+      tagline: 'TELECOM INFRA',
+      icon: (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <polygon points="12 2 4 22 20 22" />
+          <line x1="8" y1="12" x2="16" y2="12" />
+          <line x1="6" y1="17" x2="18" y2="17" />
+          <line x1="9" y1="7" x2="15" y2="7" />
+          <circle cx="12" cy="2" r="1.2" fill="currentColor" />
+        </svg>
+      ),
+    },
+    {
+      name: 'APEX HAULAGE',
+      tagline: 'FREIGHT CORRIDORS',
+      icon: (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="13 17 18 12 13 7" />
+          <polyline points="6 17 11 12 6 7" />
+          <line x1="2" y1="21" x2="22" y2="21" />
+        </svg>
+      ),
+    },
+    {
+      name: 'INFRACONNECT',
+      tagline: 'INTERMODAL LOGISTICS',
+      icon: (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+          <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+          <line x1="12" y1="22.08" x2="12" y2="12" />
+        </svg>
+      ),
+    },
+    {
+      name: 'NEXUS CORRIDOR',
+      tagline: 'ROUTE TELEMETRY',
+      icon: (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" fill="currentColor" fillOpacity="0.25" />
+        </svg>
+      ),
+    },
+  ];
+
   return (
     <footer
       className="liquid-glass"
@@ -124,7 +172,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom Industry & Network Trust Strip: Four Logoipsum Wordmarks */}
+        {/* Bottom Industry & Network Trust Strip: 4 Premium Partner Logos */}
         <div
           style={{
             padding: '2.25rem 0',
@@ -151,15 +199,66 @@ export default function Footer() {
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: 'clamp(2rem, 4vw, 4rem)',
+              gap: 'clamp(1.5rem, 3.5vw, 3.25rem)',
               flexWrap: 'wrap',
-              opacity: 0.65,
             }}
           >
-            <span className="logoipsum" style={{ fontSize: '1.25rem', color: '#ffffff' }}>logoipsum</span>
-            <span className="logoipsum" style={{ fontSize: '1.25rem', color: '#ffffff' }}>logoipsum</span>
-            <span className="logoipsum" style={{ fontSize: '1.25rem', color: '#ffffff' }}>logoipsum</span>
-            <span className="logoipsum" style={{ fontSize: '1.25rem', color: '#ffffff' }}>logoipsum</span>
+            {ecosystemPartners.map((partner) => (
+              <div
+                key={partner.name}
+                className="partner-logo-item"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.65rem',
+                  color: 'var(--text-secondary)',
+                  opacity: 0.75,
+                  transition: 'all 0.25s ease',
+                  cursor: 'default',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.opacity = '1';
+                  e.currentTarget.style.color = 'var(--text-primary)';
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.opacity = '0.75';
+                  e.currentTarget.style.color = 'var(--text-secondary)';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                }}
+              >
+                <div style={{ color: 'var(--accent-orange)', display: 'flex', alignItems: 'center' }}>
+                  {partner.icon}
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                  <span
+                    style={{
+                      fontSize: '0.8125rem',
+                      fontWeight: 700,
+                      letterSpacing: '0.12em',
+                      fontFamily: 'var(--font-heading)',
+                      lineHeight: 1.1,
+                      color: 'inherit',
+                    }}
+                  >
+                    {partner.name}
+                  </span>
+                  <span
+                    style={{
+                      fontSize: '0.5625rem',
+                      fontWeight: 500,
+                      letterSpacing: '0.18em',
+                      textTransform: 'uppercase',
+                      color: 'var(--text-muted)',
+                      fontFamily: 'var(--font-mono)',
+                      marginTop: '2px',
+                    }}
+                  >
+                    {partner.tagline}
+                  </span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
