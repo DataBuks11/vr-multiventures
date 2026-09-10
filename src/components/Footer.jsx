@@ -164,7 +164,11 @@ export default function Footer() {
                     +91 8668406011
                   </a>
                 </div>
-                <div>ops@vrmultiventures.com</div>
+                <div>
+                  <a href="mailto:contact@multiventures.com" style={{ color: 'inherit', textDecoration: 'none' }} onMouseEnter={(e) => e.target.style.color = 'var(--accent-orange)'} onMouseLeave={(e) => e.target.style.color = 'inherit'}>
+                    contact@multiventures.com
+                  </a>
+                </div>
                 <div style={{ maxWidth: '280px', lineHeight: 1.5, marginTop: '0.35rem' }}>
                   42, Solanki Patil wadi, Bidipeth road, Near Sakkardara talao, Nagpur
                 </div>

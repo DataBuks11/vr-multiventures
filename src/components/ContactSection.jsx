@@ -132,7 +132,9 @@ export default function ContactSection() {
                     Logistics Coordination Email
                   </div>
                   <div style={{ fontSize: '1.05rem', color: '#ffffff', marginTop: '0.2rem' }}>
-                    ops@vrmultiventures.com
+                    <a href="mailto:contact@multiventures.com" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.2s ease' }} onMouseEnter={(e) => e.target.style.color = 'var(--accent-orange)'} onMouseLeave={(e) => e.target.style.color = 'inherit'}>
+                      contact@multiventures.com
+                    </a>
                   </div>
                 </div>
               </div>
@@ -322,7 +324,7 @@ export default function ContactSection() {
                     type="text"
                     name="contact"
                     required
-                    placeholder="e.g. +91 8668406011 or contact@domain.com"
+                    placeholder="e.g. +91 8668406011 or contact@multiventures.com"
                     value={formData.contact}
                     onChange={handleChange}
                     style={{
