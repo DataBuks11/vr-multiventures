@@ -653,7 +653,9 @@ export default function HomePage() {
                     Direct Operations Line
                   </div>
                   <div style={{ fontSize: '1.05rem', color: '#ffffff', marginTop: '0.2rem' }}>
-                    +91 [Direct Line Placeholder]
+                    <a href="tel:+918668406011" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.2s ease' }} onMouseEnter={(e) => e.target.style.color = 'var(--accent-orange)'} onMouseLeave={(e) => e.target.style.color = 'inherit'}>
+                      +91 8668406011
+                    </a>
                   </div>
                 </div>
 
@@ -662,16 +664,16 @@ export default function HomePage() {
                     Logistics Coordination Email
                   </div>
                   <div style={{ fontSize: '1.05rem', color: '#ffffff', marginTop: '0.2rem' }}>
-                    ops@vrmultiventures.com [Placeholder]
+                    ops@vrmultiventures.com
                   </div>
                 </div>
 
                 <div>
                   <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.15em' }}>
-                    Operational Base
+                    Registered Office & Hub
                   </div>
-                  <div style={{ fontSize: '1.05rem', color: '#ffffff', marginTop: '0.2rem' }}>
-                    Regional Logistics Center, India [Placeholder]
+                  <div style={{ fontSize: '1.05rem', color: '#ffffff', marginTop: '0.2rem', lineHeight: 1.5 }}>
+                    42, Solanki Patil wadi, Bidipeth road, Near Sakkardara talao, Nagpur
                   </div>
                 </div>
               </div>
@@ -752,7 +754,7 @@ export default function HomePage() {
                       type="text"
                       name="contact"
                       required
-                      placeholder="+91 98765 43210 or email"
+                      placeholder="+91 8668406011 or email"
                       value={formData.contact}
                       onChange={handleChange}
                       style={{ width: '100%', padding: '0.8rem 1rem', backgroundColor: 'rgba(0,0,0,0.6)', border: '1px solid rgba(255,255,255,0.12)', color: '#ffffff', outline: 'none' }}

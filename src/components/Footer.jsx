@@ -159,9 +159,15 @@ export default function Footer() {
                 OPERATIONS DESK
               </div>
               <div style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', lineHeight: 1.8 }}>
-                <div>+91 [Direct Line Placeholder]</div>
-                <div>ops@vrmultiventures.com [Placeholder]</div>
-                <div>Regional Logistics Center, India [Placeholder]</div>
+                <div>
+                  <a href="tel:+918668406011" style={{ color: 'inherit', textDecoration: 'none' }} onMouseEnter={(e) => e.target.style.color = 'var(--accent-orange)'} onMouseLeave={(e) => e.target.style.color = 'inherit'}>
+                    +91 8668406011
+                  </a>
+                </div>
+                <div>ops@vrmultiventures.com</div>
+                <div style={{ maxWidth: '280px', lineHeight: 1.5, marginTop: '0.35rem' }}>
+                  42, Solanki Patil wadi, Bidipeth road, Near Sakkardara talao, Nagpur
+                </div>
                 <div style={{ marginTop: '0.75rem' }}>
                   <span style={{ fontSize: '0.75rem', color: 'var(--accent-orange)', fontFamily: 'var(--font-mono)' }}>
                     HOURS: 24/7 Dispatch Control

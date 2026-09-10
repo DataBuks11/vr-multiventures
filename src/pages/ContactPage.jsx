@@ -147,7 +147,9 @@ export default function ContactPage() {
                       Operational Line
                     </div>
                     <div style={{ fontSize: '1.15rem', color: '#ffffff', marginTop: '0.2rem', fontWeight: 400 }}>
-                      +91 [Direct Line Placeholder]
+                      <a href="tel:+918668406011" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.2s ease' }} onMouseEnter={(e) => e.target.style.color = 'var(--accent-orange)'} onMouseLeave={(e) => e.target.style.color = 'inherit'}>
+                        +91 8668406011
+                      </a>
                     </div>
                     <div style={{ fontSize: '0.8125rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>
                       Mon - Sat: 08:00 - 20:00 IST
@@ -176,7 +178,7 @@ export default function ContactPage() {
                       Dispatch Inquiries
                     </div>
                     <div style={{ fontSize: '1.15rem', color: '#ffffff', marginTop: '0.2rem', fontWeight: 400 }}>
-                      ops@vrmultiventures.com [Placeholder]
+                      ops@vrmultiventures.com
                     </div>
                     <div style={{ fontSize: '0.8125rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>
                       Response within 2 business hours
@@ -202,10 +204,10 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.15em' }}>
-                      Regional Hub Base
+                      Registered Office & Hub
                     </div>
-                    <div style={{ fontSize: '1.15rem', color: '#ffffff', marginTop: '0.2rem', fontWeight: 400 }}>
-                      Regional Infrastructure Hub, India [Placeholder]
+                    <div style={{ fontSize: '1.05rem', color: '#ffffff', marginTop: '0.2rem', fontWeight: 400, lineHeight: 1.5 }}>
+                      42, Solanki Patil wadi, Bidipeth road, Near Sakkardara talao, Nagpur
                     </div>
                   </div>
                 </div>
@@ -316,7 +318,7 @@ export default function ContactPage() {
                         type="text"
                         name="contact"
                         required
-                        placeholder="+91 98765 43210 or email"
+                        placeholder="+91 8668406011 or your email"
                         value={formData.contact}
                         onChange={handleChange}
                         style={{ width: '100%', padding: '0.85rem 1rem', backgroundColor: 'rgba(0,0,0,0.6)', border: '1px solid rgba(255,255,255,0.12)', color: '#ffffff', outline: 'none' }}
