@@ -21,6 +21,7 @@ import {
   AlertCircle,
 } from 'lucide-react';
 import { submitContactInquiry } from '../utils/contactApi';
+import DynamicHaulageEstimator from '../components/DynamicHaulageEstimator';
 
 export default function HomePage() {
   const [formData, setFormData] = useState({
@@ -650,11 +651,23 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 10. Direct Dispatch Inquiry Form (Liquid Glass) */}
-      <section className="editorial-section">
+      {/* 10. Direct Dispatch Inquiry Form (Liquid Glass) with Dynamic Estimator */}
+      <section className="editorial-section" id="home-inquiry-panel">
         <div className="container">
+          {/* Dynamic Interactive Route & Haulage Calculator */}
+          <div style={{ marginBottom: '3.5rem' }}>
+            <DynamicHaulageEstimator
+              onSelectSpec={(spec, cargo) => {
+                setFormData((prev) => ({ ...prev, message: spec, serviceType: cargo }));
+                const el = document.getElementById('home-dispatch-form');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
+            />
+          </div>
+
           <div
             className="liquid-glass"
+            id="home-dispatch-form"
             style={{
               padding: '4rem 3rem',
               borderRadius: '2px',

@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { ArrowRight, CheckCircle, Phone, Mail, MapPin, RefreshCw, HelpCircle, Clock, ChevronRight, AlertCircle } from 'lucide-react';
 import { submitContactInquiry } from '../utils/contactApi';
+import DynamicHaulageEstimator from '../components/DynamicHaulageEstimator';
 
 export default function ContactPage() {
+  const location = useLocation();
   const [formData, setFormData] = useState({
     name: '',
     company: '',
     contact: '',
-    serviceType: 'Mobile Tower Parts Transportation',
+    serviceType: location.state?.service || 'Mobile Tower Parts Transportation',
     urgency: 'Scheduled Project Window',
-    message: '',
+    message: location.state?.prefilledMessage || '',
   });
 
   const [submitted, setSubmitted] = useState(false);
@@ -434,6 +436,16 @@ export default function ContactPage() {
             </div>
           </div>
         </div>
+        {/* Dynamic Interactive Route & Haulage Estimator */}
+        <div style={{ marginTop: '4.5rem' }}>
+          <DynamicHaulageEstimator
+            onSelectSpec={(spec, cargo) => {
+              setFormData((prev) => ({ ...prev, message: spec, serviceType: cargo }));
+              window.scrollTo({ top: 350, behavior: 'smooth' });
+            }}
+          />
+        </div>
+
         <style>{`
           @media (min-width: 860px) {
             .contact-main-grid {
