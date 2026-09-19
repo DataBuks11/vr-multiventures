@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { ArrowRight, CheckCircle, Mail, Phone, MapPin, RefreshCw } from 'lucide-react';
+import { ArrowRight, CheckCircle, Mail, Phone, MapPin, RefreshCw, AlertCircle } from 'lucide-react';
+import { submitContactInquiry } from '../utils/contactApi';
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -11,6 +12,7 @@ export default function ContactSection() {
 
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const handleChange = (e) => {
     setFormData({
@@ -19,17 +21,32 @@ export default function ContactSection() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
-    setTimeout(() => {
-      setSubmitting(false);
+    setErrorMessage(null);
+
+    const res = await submitContactInquiry({
+      name: formData.name,
+      company: formData.company,
+      contact: formData.contact,
+      serviceType: 'Mobile Tower Parts Transportation',
+      urgency: 'Standard Dispatch Coordination',
+      message: formData.message,
+    });
+
+    setSubmitting(false);
+
+    if (res.success) {
       setSubmitted(true);
-    }, 600);
+    } else {
+      setErrorMessage(res.error || 'Failed to dispatch notification email. Please retry.');
+    }
   };
 
   const handleReset = () => {
     setFormData({ name: '', company: '', contact: '', message: '' });
+    setErrorMessage(null);
     setSubmitted(false);
   };
 
@@ -379,6 +396,25 @@ export default function ContactSection() {
                   />
                 </div>
 
+                {errorMessage && (
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.75rem',
+                      padding: '0.85rem 1rem',
+                      backgroundColor: 'rgba(239, 68, 68, 0.12)',
+                      border: '1px solid rgba(239, 68, 68, 0.4)',
+                      color: '#fca5a5',
+                      fontSize: '0.85rem',
+                      borderRadius: '2px',
+                    }}
+                  >
+                    <AlertCircle size={16} color="#ef4444" style={{ flexShrink: 0 }} />
+                    <span>{errorMessage}</span>
+                  </div>
+                )}
+
                 <button
                   type="submit"
                   disabled={submitting}
@@ -397,12 +433,22 @@ export default function ContactSection() {
                     cursor: submitting ? 'wait' : 'pointer',
                     transition: 'all 0.2s ease',
                     boxShadow: '0 4px 20px rgba(255, 85, 0, 0.3)',
+                    opacity: submitting ? 0.8 : 1,
                   }}
                   onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--accent-orange-hover)')}
                   onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'var(--accent-orange)')}
                 >
-                  {submitting ? 'Submitting...' : 'Transmit Inquiry'}
-                  <ArrowRight size={16} />
+                  {submitting ? (
+                    <>
+                      <RefreshCw size={14} style={{ animation: 'spin 1s linear infinite' }} />
+                      <span>Transmitting Requirement...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>Transmit Requirement</span>
+                      <ArrowRight size={16} />
+                    </>
+                  )}
                 </button>
               </form>
             )}

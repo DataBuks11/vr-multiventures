@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle, Phone, Mail, MapPin, RefreshCw, HelpCircle, Clock, ChevronRight } from 'lucide-react';
+import { ArrowRight, CheckCircle, Phone, Mail, MapPin, RefreshCw, HelpCircle, Clock, ChevronRight, AlertCircle } from 'lucide-react';
+import { submitContactInquiry } from '../utils/contactApi';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -14,6 +15,7 @@ export default function ContactPage() {
 
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const handleChange = (e) => {
     setFormData({
@@ -22,13 +24,27 @@ export default function ContactPage() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
-    setTimeout(() => {
-      setSubmitting(false);
+    setErrorMessage(null);
+
+    const res = await submitContactInquiry({
+      name: formData.name,
+      company: formData.company,
+      contact: formData.contact,
+      serviceType: formData.serviceType,
+      urgency: formData.urgency,
+      message: formData.message,
+    });
+
+    setSubmitting(false);
+
+    if (res.success) {
       setSubmitted(true);
-    }, 600);
+    } else {
+      setErrorMessage(res.error || 'Failed to dispatch notification email. Please retry.');
+    }
   };
 
   const handleReset = () => {
@@ -40,6 +56,7 @@ export default function ContactPage() {
       urgency: 'Scheduled Project Window',
       message: '',
     });
+    setErrorMessage(null);
     setSubmitted(false);
   };
 
@@ -361,6 +378,25 @@ export default function ContactPage() {
                     />
                   </div>
 
+                  {errorMessage && (
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.75rem',
+                        padding: '0.85rem 1rem',
+                        backgroundColor: 'rgba(239, 68, 68, 0.12)',
+                        border: '1px solid rgba(239, 68, 68, 0.4)',
+                        color: '#fca5a5',
+                        fontSize: '0.85rem',
+                        borderRadius: '2px',
+                      }}
+                    >
+                      <AlertCircle size={16} color="#ef4444" style={{ flexShrink: 0 }} />
+                      <span>{errorMessage}</span>
+                    </div>
+                  )}
+
                   <button
                     type="submit"
                     disabled={submitting}
@@ -378,10 +414,20 @@ export default function ContactPage() {
                       gap: '0.75rem',
                       cursor: submitting ? 'wait' : 'pointer',
                       boxShadow: '0 4px 20px rgba(255, 85, 0, 0.3)',
+                      opacity: submitting ? 0.8 : 1,
                     }}
                   >
-                    {submitting ? 'Registering...' : 'Transmit Requirement'}
-                    <ArrowRight size={16} />
+                    {submitting ? (
+                      <>
+                        <RefreshCw size={14} style={{ animation: 'spin 1s linear infinite' }} />
+                        <span>Transmitting Requirement...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Transmit Requirement</span>
+                        <ArrowRight size={16} />
+                      </>
+                    )}
                   </button>
                 </form>
               )}

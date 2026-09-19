@@ -17,8 +17,10 @@ import {
   RefreshCw,
   Layers,
   Compass,
-  Cpu
+  Cpu,
+  AlertCircle,
 } from 'lucide-react';
+import { submitContactInquiry } from '../utils/contactApi';
 
 export default function HomePage() {
   const [formData, setFormData] = useState({
@@ -30,18 +32,45 @@ export default function HomePage() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
-    setTimeout(() => {
-      setSubmitting(false);
+    setErrorMessage(null);
+
+    const res = await submitContactInquiry({
+      name: formData.name,
+      company: formData.company,
+      contact: formData.contact,
+      serviceType: formData.serviceType,
+      urgency: 'Scheduled Project Window',
+      message: formData.message,
+    });
+
+    setSubmitting(false);
+
+    if (res.success) {
       setSubmitted(true);
-    }, 600);
+    } else {
+      setErrorMessage(res.error || 'Failed to dispatch notification email. Please retry.');
+    }
+  };
+
+  const handleReset = () => {
+    setFormData({
+      name: '',
+      company: '',
+      contact: '',
+      serviceType: 'Mobile Tower Parts Transportation',
+      message: '',
+    });
+    setErrorMessage(null);
+    setSubmitted(false);
   };
 
   const allServices = [
@@ -700,7 +729,7 @@ export default function HomePage() {
                     Thank you, <strong style={{ color: '#ffffff' }}>{formData.name}</strong>. Our fleet dispatch team will review requirements and reach out promptly.
                   </p>
                   <button
-                    onClick={() => setSubmitted(false)}
+                    onClick={handleReset}
                     style={{
                       display: 'inline-flex',
                       alignItems: 'center',
@@ -778,6 +807,25 @@ export default function HomePage() {
                     />
                   </div>
 
+                  {errorMessage && (
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.75rem',
+                        padding: '0.85rem 1rem',
+                        backgroundColor: 'rgba(239, 68, 68, 0.12)',
+                        border: '1px solid rgba(239, 68, 68, 0.4)',
+                        color: '#fca5a5',
+                        fontSize: '0.85rem',
+                        borderRadius: '2px',
+                      }}
+                    >
+                      <AlertCircle size={16} color="#ef4444" style={{ flexShrink: 0 }} />
+                      <span>{errorMessage}</span>
+                    </div>
+                  )}
+
                   <button
                     type="submit"
                     disabled={submitting}
@@ -795,10 +843,20 @@ export default function HomePage() {
                       gap: '0.75rem',
                       marginTop: '0.5rem',
                       boxShadow: '0 4px 20px rgba(255, 85, 0, 0.3)',
+                      opacity: submitting ? 0.8 : 1,
                     }}
                   >
-                    {submitting ? 'Submitting...' : 'Transmit Requirement'}
-                    <ArrowRight size={15} />
+                    {submitting ? (
+                      <>
+                        <RefreshCw size={14} style={{ animation: 'spin 1s linear infinite' }} />
+                        <span>Transmitting Requirement...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Transmit Requirement</span>
+                        <ArrowRight size={15} />
+                      </>
+                    )}
                   </button>
                 </form>
               )}
