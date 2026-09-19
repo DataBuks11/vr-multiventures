@@ -693,8 +693,8 @@ export default function HomePage() {
                     Logistics Coordination Email
                   </div>
                   <div style={{ fontSize: '1.05rem', color: '#ffffff', marginTop: '0.2rem' }}>
-                    <a href="mailto:contact@multiventures.com" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.2s ease' }} onMouseEnter={(e) => e.target.style.color = 'var(--accent-orange)'} onMouseLeave={(e) => e.target.style.color = 'inherit'}>
-                      contact@multiventures.com
+                    <a href="mailto:vrmultiventures@gmail.com" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.2s ease' }} onMouseEnter={(e) => e.target.style.color = 'var(--accent-orange)'} onMouseLeave={(e) => e.target.style.color = 'inherit'}>
+                      vrmultiventures@gmail.com
                     </a>
                   </div>
                 </div>
@@ -785,7 +785,7 @@ export default function HomePage() {
                       type="text"
                       name="contact"
                       required
-                      placeholder="+91 8668406011 or contact@multiventures.com"
+                      placeholder="+91 8668406011 or vrmultiventures@gmail.com"
                       value={formData.contact}
                       onChange={handleChange}
                       style={{ width: '100%', padding: '0.8rem 1rem', backgroundColor: 'rgba(0,0,0,0.6)', border: '1px solid rgba(255,255,255,0.12)', color: '#ffffff', outline: 'none' }}

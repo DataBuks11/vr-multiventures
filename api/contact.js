@@ -48,7 +48,7 @@ export default async function handler(req, res) {
         error: 'Email service is temporarily unconfigured.',
       });
     }
-    const recipientEmail = process.env.CONTACT_RECIPIENT_EMAIL || 'piyushjunghare635@gmail.com';
+    const recipientEmail = process.env.CONTACT_RECIPIENT_EMAIL || 'vrmultiventures@gmail.com';
     const fromAddress = process.env.RESEND_FROM || 'VR Multiventures <onboarding@resend.dev>';
 
     // Check if contact looks like an email to set reply-to
